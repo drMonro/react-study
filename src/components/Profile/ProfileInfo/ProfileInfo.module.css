@@ -1,0 +1,10 @@
+._ {
+    width: 100%;
+}
+
+._img {
+    background-image: url('https://wiki.soiro.ru/images/Render.jpg');
+    background-size: cover;
+    height: 100px;
+    width: 100%;
+}

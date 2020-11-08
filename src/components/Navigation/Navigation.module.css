@@ -1,0 +1,12 @@
+._ {
+  grid-area: navigation;
+  background-color: #547944;
+}
+
+._link {
+  color: #b6c1d6;
+}
+
+._link.active {
+  color: #d9c3c3;
+}
