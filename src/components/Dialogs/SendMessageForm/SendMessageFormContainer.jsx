@@ -1,34 +1,28 @@
 import React from 'react';
 import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../../redux/dialogs-page-reducer";
 import {SendMessageForm} from "./SendMessageForm";
-import {StoreContext} from "../../../StoreContext";
+import {connect} from "react-redux";
 
-
-export const SendMessageFormContainer = (props) => {
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-                let state = store.getState();
-
-
-                let onNewMessageChange = (e) => {
-                    let text = e.target.value;
-                    store.dispatch(updateNewMessageTextActionCreator(text));
-                }
-
-                let onSendMessageClick = () => {
-                    store.dispatch(sendMessageActionCreator());
-                }
-
-                return (
-                    <SendMessageForm
-                        newMessageText={state.dialogsPage.newMessageText}
-                        updateMessageText={onNewMessageChange}
-                        sendMessage={onSendMessageClick}
-                    />
-                );
-            }
-            }
-        </StoreContext.Consumer>
-    )
+let mapStateToProps = (state) => {
+    return {
+        newMessageText: state.dialogsPage.newMessageText
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    let onNewMessageChange = (e) => {
+        let text = e.target.value;
+        dispatch(updateNewMessageTextActionCreator(text));
+    }
+
+    let onSendMessageClick = () => {
+        dispatch(sendMessageActionCreator());
+    }
+
+    return {
+        updateMessageText: onNewMessageChange,
+        sendMessage: onSendMessageClick
+    }
+}
+
+export const SendMessageFormContainer = connect(mapStateToProps, mapDispatchToProps)(SendMessageForm);

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "./Dialogs.module.css";
 import {RecipientsListContainer} from "./RecipientsList/RecipientsListContainer";
 import {MessagesListContainer} from "./MessagesList/MessagesListContainer";
-import {SendMessageForm} from "./SendMessageForm/SendMessageForm";
+// import {SendMessageForm} from "./SendMessageForm/SendMessageForm";
 import {SendMessageFormContainer} from "./SendMessageForm/SendMessageFormContainer";
 
 const Dialogs = (props) => {

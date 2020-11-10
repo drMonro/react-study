@@ -15,40 +15,35 @@ let initialState = {
         {id: 2, name: 'Dimych', message: 'Dimych message2'},
         {id: 3, name: 'Dimych', message: 'Dimych message3'}
     ],
-    newMessageText: ''
+    newMessageText: '!!!'
 };
 
 const _updateNewMessageText = (state, newText) => {
-    state.newMessageText = newText;
+    return {
+        ...state,
+        newMessageText: newText
+    };
 };
 
 const _sendMessage = (state) => {
-
-    let newMessage = {
-        id: 4,
-        name: 'Dimych',
-        message: state.newMessageText
+    return {
+        ...state,
+        newMessageText: '',
+        messagesData: [...state.messagesData, {id: 4, name: "Dimych", message: state.newMessageText}]
     };
-
-    state.messagesData.push(newMessage);
-    state.newMessageText = '';
-
 };
 
 export const dialogsPageReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
-            _updateNewMessageText(state, action.newText);
-            return state;
+            return _updateNewMessageText(state, action.newText);
         case SEND_MESSAGE:
-            _sendMessage(state);
-            return state;
+            return _sendMessage(state);
         default:
             return state;
     }
 }
-
 
 
 export const sendMessageActionCreator = () => ({

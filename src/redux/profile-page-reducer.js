@@ -1,20 +1,6 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
-const _addPost = (state) => {
-    let newPost = {
-        id: 4,
-        message: state.newPostText
-    };
-
-    state.postsData.push(newPost);
-    state.newPostText = '';
-};
-
-const _updateNewPostText = (state, newText) => {
-    state.newPostText = newText;
-};
-
 let initialState = {
     postsData: [
         {id: 1, message: 'Hello!'},
@@ -24,15 +10,27 @@ let initialState = {
     newPostText: 'kamasutra'
 };
 
+const _updateNewPostText = (state, newText) => {
+    return {
+        ...state,
+        newPostText: newText
+    };
+};
+
+const _addPost = (state) => {
+    return {
+        ...state,
+        newPostText: '',
+        postsData: [...state.postsData, {id: 4, message: state.newPostText}]
+    };
+};
+
 export const profilePageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            _addPost(state);
-            return state
-
+            return _addPost(state);
         case UPDATE_NEW_POST_TEXT:
-            _updateNewPostText(state, action.newText);
-            return state
+            return _updateNewPostText(state, action.newText);
         default:
             return state
     }
