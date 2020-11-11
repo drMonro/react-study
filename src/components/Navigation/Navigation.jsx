@@ -22,6 +22,10 @@ const Navigation = () => {
                 <li>
                     <NavLink className={styles._link} activeClassName={styles.active} to="/profil">Settings</NavLink>
                 </li>
+
+                <li>
+                    <NavLink className={styles._link} activeClassName={styles.active} to="/users">Users</NavLink>
+                </li>
             </ul>
         </nav>
     );

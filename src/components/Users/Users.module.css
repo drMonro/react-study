@@ -1,0 +1,33 @@
+._user {
+    display: flex;
+    max-width: 50%;
+    margin-bottom: 50px;
+}
+
+._userFollowStatus {
+    text-align-last: center;
+}
+
+._userAvatar {
+    display: flex;
+    flex-direction: column;
+}
+
+._userAvatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+._userInfo {
+    width: 100%;
+}
+
+._userLocation {
+    text-align: right;
+}
+
+._userMainInfo {
+    display: flex;
+    justify-content: space-between;
+}
