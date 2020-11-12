@@ -11,6 +11,7 @@
 ._userAvatar {
     display: flex;
     flex-direction: column;
+    margin-right: 50px;
 }
 
 ._userAvatar img {
@@ -20,7 +21,7 @@
 }
 
 ._userInfo {
-    width: 100%;
+    width: 70%;
 }
 
 ._userLocation {
