@@ -3,15 +3,14 @@ import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {UserPostsContainer} from "./UserPosts/UserPostsContainer";
 
-const Profile = (props) => {
+export const Profile = (props) => {
 
     return (
         <div className="Profile">
-            <ProfileInfo/>
-            <UserPostsContainer />
+            <ProfileInfo profile={props.profile}/>
+            <UserPostsContainer/>
         </div>
 
     );
 }
 
-export default Profile;

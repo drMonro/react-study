@@ -1,53 +1,62 @@
 import React from 'react';
 import styles from "./Users.module.css";
-import * as axios from "axios";
-import defaultAvatar from "../../assets/ava.jpg"
+import defaultAvatar from "../../assets/ava.jpg";
+import {NavLink} from "react-router-dom";
 
-export class Users extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //
-    // }
-    componentDidMount() {
-        this.getUsers();
+
+export let Users = (props) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
 
-    getUsers () {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                this.props.setUsers(response.data.items);
-            });
-    }
-
-    render () {
-        return (
-            <div className={styles._}>
-                <p>Users</p>
-                <ul>
-                    {this.props.users.map(user => {
-                        return (
-                            <li className={styles._user}>
-                                <div className={styles._userAvatar}>
+    return (
+        <div className={styles._}>
+            <p>Users</p>
+            <ul className={styles._paginationList}>
+                {pages.map(page => {
+                    return (
+                        <li>
+                            <button className={props.currentPage === page && styles._paginationItem__selected}
+                                    onClick={(e) => {
+                                        props.onPaginationClick(page);
+                                    }}>
+                                {page}
+                            </button>
+                        </li>
+                    )
+                })}
+            </ul>
+            <ul>
+                {props.users.map(user => {
+                    return (
+                        <li className={styles._user}>
+                            <div className={styles._userAvatar}>
+                                <NavLink to={'/profile/' + user.id}>
                                     <img src={user.photos.small != null ? user.photos.small : defaultAvatar} alt=""/>
-                                    {user.followed
-                                        ? <button onClick={() => this.props.unfollow(user.id)} className={styles._userFollowStatus}>Unfollow</button>
-                                        : <button onClick={() => this.props.follow(user.id)} className={styles._userFollowStatus}>Follow</button>
-                                    }
-                                </div>
-                                <div className={styles._userInfo}>
-                                    <div className={styles._userMainInfo}>
-                                        <p>{user.name}</p>
-                                        <div className={styles._userLocation}>
-                                            <p>{"user.location.country"}</p>
-                                            <p>{"user.location.city"}</p>
-                                        </div>
+                                </NavLink>
+
+                                {user.followed
+                                    ? <button onClick={() => props.unfollow(user.id)} className={styles._userFollowStatus}>Unfollow</button>
+                                    : <button onClick={() => props.follow(user.id)} className={styles._userFollowStatus}>Follow</button>
+                                }
+                            </div>
+                            <div className={styles._userInfo}>
+                                <div className={styles._userMainInfo}>
+                                    <p>{user.name}</p>
+                                    <div className={styles._userLocation}>
+                                        <p>{"user.location.country"}</p>
+                                        <p>{"user.location.city"}</p>
                                     </div>
-                                    <p>{user.status != null ? user.status : "YoYoYo"}</p>
                                 </div>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </div>
-        );
-    };
+                                <p>{user.status != null ? user.status : "YoYoYo"}</p>
+                            </div>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
+    )
+
 }

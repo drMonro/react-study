@@ -1,11 +1,16 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
-     users: [
-
-    ]
+    users: [],
+    pageSize: 50,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: false
 };
 
 const _follow = (state, userID) => {
@@ -39,8 +44,35 @@ const _setUsers = (state, users) => {
     }
 }
 
+const _setCurrentPage = (state, currentPage) => {
+    return {
+        ...state,
+        currentPage: currentPage
+    }
+}
+
+const _setTotalUsersCount = (state, totalUsersCount) => {
+    return {
+        ...state,
+        totalUsersCount: totalUsersCount
+    }
+}
+
+const _toggleIsFetching = (state, isFetching) => {
+    return {
+        ...state,
+        isFetching: isFetching
+    }
+}
+
 export const usersPageReducer = (state = initialState, action) => {
     switch (action.type) {
+        case TOGGLE_IS_FETCHING:
+            return _toggleIsFetching(state, action.isFetching);
+        case SET_CURRENT_PAGE:
+            return _setCurrentPage(state, action.currentPage);
+        case SET_TOTAL_USERS_COUNT:
+            return _setTotalUsersCount(state, action.totalUsersCount);
         case SET_USERS:
             return _setUsers(state, action.users);
         case FOLLOW:
@@ -53,25 +85,32 @@ export const usersPageReducer = (state = initialState, action) => {
 }
 
 
-export const followActionCreator = (userID) => ({
+export const follow = (userID) => ({
     type: FOLLOW,
     userID: userID
 });
 
-export const unfollowActionCreator = (userID) => ({
+export const unfollow = (userID) => ({
     type: UNFOLLOW,
     userID: userID
 });
 
-export const setUsersActionCreator = (users) => ({
+export const setUsers = (users) => ({
     type: SET_USERS,
     users: users
 });
 
+export const setCurrentPage = (currentPage) => ({
+    type: SET_CURRENT_PAGE,
+    currentPage: currentPage
+});
 
+export const setTotalUsersCount = (totalUsersCount) => ({
+    type: SET_TOTAL_USERS_COUNT,
+    totalUsersCount: totalUsersCount
+});
 
-
-// export const updateNewPostTextActionCreator = (text) => ({
-//     type: UPDATE_NEW_POST_TEXT,
-//     newText: text
-// })
+export const toggleIsFetching = (isFetching) => ({
+    type: TOGGLE_IS_FETCHING,
+    isFetching: isFetching
+});

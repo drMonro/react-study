@@ -32,3 +32,13 @@
     display: flex;
     justify-content: space-between;
 }
+
+._paginationList {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+._paginationItem__selected {
+    font-weight: bold;
+}
