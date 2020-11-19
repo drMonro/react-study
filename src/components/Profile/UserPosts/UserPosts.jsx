@@ -1,13 +1,23 @@
 import React from 'react';
+import {AddPostFormContainer} from "./AddPostForm/AddPostFormContainer";
+
+
+
+
+
 
 export const UserPosts = (props) => {
+
+    let onAddPost = (values) => {
+        props.addPost(values.newPostText);
+    }
+
     return (
         <div className={"MyPosts"}>
             <p className={"MyPosts__title"}>My posts</p>
-            <form>
-                <textarea onChange={props.updateNewPostText} value={props.newPostText}/>
-                <button type={"button"} onClick={props.addPost}>Add post</button>
-            </form>
+
+            <AddPostFormContainer onSubmit={onAddPost}/>
+
             <ul>
                 {props.postsElements}
             </ul>

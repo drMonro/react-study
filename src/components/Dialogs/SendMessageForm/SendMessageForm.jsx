@@ -1,12 +1,14 @@
 import React from 'react';
+import {Field} from "redux-form";
 
 
 export const SendMessageForm = (props) => {
-// debugger
     return (
-        <form>
-            <textarea value={props.newMessageText} onChange={props.updateMessageText}/>
-            <button onClick={props.sendMessage} type={"button"}>Send message</button>
+        <form onSubmit={props.handleSubmit}>
+            <p>
+                <Field component={"textarea"} name={"newMessageText"} placeholder={"Enter New Messgae"}/>
+            </p>
+            <button>Send message</button>
         </form>
     );
 }

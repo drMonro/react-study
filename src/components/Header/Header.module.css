@@ -1,8 +1,14 @@
-.header {
+._ {
   grid-area: header;
+  display: flex;
+  justify-content: space-between;
 }
 
-.header img {
+._ img {
   width: 60px;
 }
 
+._login {
+  width: 100px;
+  background-color: #678859;
+}

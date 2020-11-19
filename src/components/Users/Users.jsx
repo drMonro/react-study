@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 
 
 export let Users = (props) => {
+    // debugger
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -30,6 +31,7 @@ export let Users = (props) => {
             </ul>
             <ul>
                 {props.users.map(user => {
+                    // debugger
                     return (
                         <li className={styles._user}>
                             <div className={styles._userAvatar}>
@@ -38,8 +40,15 @@ export let Users = (props) => {
                                 </NavLink>
 
                                 {user.followed
-                                    ? <button onClick={() => props.unfollow(user.id)} className={styles._userFollowStatus}>Unfollow</button>
-                                    : <button onClick={() => props.follow(user.id)} className={styles._userFollowStatus}>Follow</button>
+                                    ? <button disabled={props.APIInProgress.some(id => id === user.id)}
+                                              onClick={() => {props.unfollow(user.id);}}
+                                              className={styles._userFollowStatus}>
+                                        Unfollow</button>
+
+                                    : <button disabled={props.APIInProgress.some(id => id === user.id)}
+                                              onClick={() => {props.follow(user.id);}}
+                                              className={styles._userFollowStatus}>
+                                        Follow</button>
                                 }
                             </div>
                             <div className={styles._userInfo}>

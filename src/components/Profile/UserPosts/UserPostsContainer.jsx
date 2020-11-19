@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-page-reducer";
+import {addPostActionCreator} from "../../../redux/profile-page-reducer";
 import {UserPosts} from "./UserPosts";
 import {connect} from "react-redux";
 import Post from "./Post/Post";
@@ -13,24 +13,18 @@ let mapStateToProps = (state) => {
         );
 
     return {
-        postsElements: postsElements,
-        newPostText: state.profilePage.newPostText
+        postsElements: postsElements
+        // newPostText: state.profilePage.newPostText
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
-    let onAddPost = () => {
-        dispatch(addPostActionCreator());
-    }
-
-    let onNewPostChange = (e) => {
-        let text = e.target.value;
-        dispatch(updateNewPostTextActionCreator(text));
+    let onAddPost = (newPostText) => {
+        dispatch(addPostActionCreator(newPostText));
     }
 
     return {
-        addPost: onAddPost,
-        updateNewPostText: onNewPostChange
+        addPost: onAddPost
     }
 }
 
