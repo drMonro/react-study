@@ -2,10 +2,6 @@ import React from 'react';
 import {AddPostFormContainer} from "./AddPostForm/AddPostFormContainer";
 
 
-
-
-
-
 export const UserPosts = (props) => {
 
     let onAddPost = (values) => {

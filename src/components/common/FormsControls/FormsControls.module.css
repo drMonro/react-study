@@ -1,0 +1,20 @@
+._ {
+    /*background-color: red;*/
+}
+
+._._error input,
+._._error textarea {
+    border: 1px solid red;
+}
+
+
+._._error span {
+    /*border: 1px solid red;*/
+    color: red;
+}
+
+._formError {
+    border: 1px solid red;
+    padding: 5px;
+    color: rosybrown;
+}
