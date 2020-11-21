@@ -9,9 +9,6 @@ export class ProfileStatus extends React.Component {
     }
 
     activateEditMode = () => {
-
-        console.log(this.props.status)
-        console.log(this.state.status)
         this.setState({
             editMode: true
         });

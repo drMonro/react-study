@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./ProfileInfo.module.css";
 import defaultAvatar from "../../../assets/ava.jpg";
 import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
+import {ProfileStatusHooks} from "./ProfileStatus/ProfileStatusHooks";
 
 
 export const ProfileInfo = (props) => {
@@ -15,7 +16,7 @@ export const ProfileInfo = (props) => {
             <div className={styles._userInfo}>
                 <img src={props.profile != null ? props.profile.photos.large : defaultAvatar}
                      alt={'Аватар пользователя'}/>
-                <ProfileStatus status={props.status}
+                <ProfileStatusHooks status={props.status}
                                updateUserStatus={props.updateUserStatus}/>
             </div>
         </div>
