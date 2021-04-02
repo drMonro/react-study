@@ -2,19 +2,13 @@ import React from 'react';
 import {addPostActionCreator} from "../../../redux/profile-page-reducer";
 import {UserPosts} from "./UserPosts";
 import {connect} from "react-redux";
-import Post from "./Post/Post";
 
 
 let mapStateToProps = (state) => {
-    let postsElements = state.profilePage.postsData
-        .map(message => {
-                return <Post message={message.message} key={message.id}/>
-            }
-        );
+    let postsData = state.profilePage.postsData;
 
     return {
-        postsElements: postsElements
-        // newPostText: state.profilePage.newPostText
+        postsData: postsData
     }
 }
 
