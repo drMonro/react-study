@@ -4,6 +4,7 @@ const ADD_POST = 'ADD_POST';
 // const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
     postsData: [
@@ -38,12 +39,22 @@ const _setStatus = (state, actionStatus) => {
     };
 };
 
+const _deletePost = (state, postId) => {
+    return {
+        ...state,
+        postsData: state.postsData.filter(post => post.id !== postId)
+    };
+};
+
+
 export const profilePageReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_PROFILE:
             return _setUserProfile(state, action.profile);
         case ADD_POST:
             return _addPost(state, action.newPostText);
+        case DELETE_POST:
+            return _deletePost(state, action.postId);
         case SET_STATUS:
             return _setStatus(state, action.status);
         default:
@@ -55,7 +66,13 @@ export const profilePageReducer = (state = initialState, action) => {
 export const addPostActionCreator = (newPostText) => ({
     type: ADD_POST,
     newPostText: newPostText
+});
+
+export const deletePost = (postId) => ({
+    type: DELETE_POST,
+    postId: postId
 })
+
 
 export const setUserProfile = (profile) => ({
     type: SET_USER_PROFILE,
