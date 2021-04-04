@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-// import styles from './Dialogs.module.css'
 import Navigation from "./components/Navigation/Navigation";
 import  {withRouter, Route} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -9,7 +8,6 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {LoginContainer} from "./components/Login/LoginContainer";
 import {connect} from "react-redux";
-import {getAuthUserData} from "./redux/auth-reducer";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/Preloader/Preloader";

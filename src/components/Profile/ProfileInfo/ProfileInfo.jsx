@@ -5,7 +5,7 @@ import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 import {ProfileStatusHooks} from "./ProfileStatus/ProfileStatusHooks";
 
 
-export const ProfileInfo = (props) => {
+export const ProfileInfo = ({profile, status, updateUserStatus}) => {
     // debugger
     return (
         <div className={styles._}>
@@ -14,10 +14,10 @@ export const ProfileInfo = (props) => {
             {/*</div>*/}
 
             <div className={styles._userInfo}>
-                <img src={props.profile != null ? props.profile.photos.large : defaultAvatar}
+                <img src={profile != null ? defaultAvatar : defaultAvatar}
                      alt={'Аватар пользователя'}/>
-                <ProfileStatusHooks status={props.status}
-                               updateUserStatus={props.updateUserStatus}/>
+                <ProfileStatusHooks status={status}
+                               updateUserStatus={updateUserStatus}/>
             </div>
         </div>
 
